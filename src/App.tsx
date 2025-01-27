@@ -2,12 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PianoKey from './PianoKey';
-
-interface note {
-  midiNumber?: Number,
-  noteName?: String,
-  frequencyInHz?: Number,
-}
+import note from './INote';
 
 //  const arrNoteName_letter = new Array(7);
 //  const arrNoteName_letter = ['C', 'D', 'E', 'F', 'G', 'A', 'B', ];
@@ -37,8 +32,8 @@ for (let i = 21; i <= 108; i++) {
 console.log('arrNotes', arrNotes);
 
 function renderPianoKeys() {
-  return arrNotes.map((note) => {
-    return <PianoKey />;
+  return arrNotes.map((note, i) => {
+    return <PianoKey key={i} {...note} />;
   });
 }
 
