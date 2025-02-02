@@ -14,12 +14,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 // BOOKMARK work on RangeSelector component
 // React Hook "React.useState" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function
 
-const [age, setAge] = React.useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
-
 //  const arrNoteName_letter = new Array(7);
 //  const arrNoteName_letter = ['C', 'D', 'E', 'F', 'G', 'A', 'B', ];
 const arrNoteName_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G',];
@@ -65,7 +59,7 @@ for (let i = 21; i <= 127; i++) {
   });
 }
 
-console.log(midiNotes);
+console.log(midiNotes.toString());
 
 
 
@@ -101,22 +95,7 @@ function App() {
     <div className="App">
       {renderPianoKeys()}
       <br /><br />
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handleChange}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

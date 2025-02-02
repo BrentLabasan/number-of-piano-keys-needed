@@ -1,5 +1,0 @@
-export default RangeSelector() {
-    return (
-        
-    );
-}
