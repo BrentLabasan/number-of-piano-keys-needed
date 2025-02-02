@@ -29,11 +29,14 @@ export default function RangeBoundary() {
     setAge(event.target.value as string);
   };
 
+
+  // TODO draw to Inputs side by side
+  // TODO buttons for 25, 49, 61, 73, 76, 88 sizes
   return (
     <section>
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Lowest Key</InputLabel>
+          <InputLabel id="demo-simple-select-label">Lowest Key of Piano 🎹🎼</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -48,7 +51,7 @@ export default function RangeBoundary() {
 
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Highest Key</InputLabel>
+          <InputLabel id="demo-simple-select-label">Highest Key of Piano 🎹🎼</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"

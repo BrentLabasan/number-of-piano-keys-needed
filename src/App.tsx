@@ -11,7 +11,8 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import RangeBoundary from './RangeBoundary';
-
+import RangeOfPiano from './RangeOfPiano';
+import RangeOfSong from './RangeOfSong';
 
 // BOOKMARK work on RangeSelector component
 // React Hook "React.useState" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function
@@ -99,6 +100,8 @@ function App() {
     <div className="App">
       {renderPianoKeys()}
       <br /><br />
+      <RangeOfPiano />
+      <RangeOfSong />
       <RangeBoundary />
 
       {/* <header className="App-header">
