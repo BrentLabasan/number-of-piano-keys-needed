@@ -10,6 +10,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+import RangeBoundary from './RangeBoundary';
+
 
 // BOOKMARK work on RangeSelector component
 // React Hook "React.useState" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function
@@ -84,6 +86,8 @@ for (let i = 21; i <= 108; i++) {
 
 console.log('arrNotes', arrNotes);
 
+
+// TODO draw white and black keys in differemt places
 function renderPianoKeys() {
   return arrNotes.map((note, i) => {
     return <PianoKey key={i} {...note} />;
@@ -95,6 +99,7 @@ function App() {
     <div className="App">
       {renderPianoKeys()}
       <br /><br />
+      <RangeBoundary />
 
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
