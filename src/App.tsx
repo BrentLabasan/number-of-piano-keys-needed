@@ -14,6 +14,9 @@ import RangeBoundary from './RangeBoundary';
 import RangeOfPiano from './RangeOfPiano';
 import RangeOfSong from './RangeOfSong';
 
+//  TODOs
+// take pic of configuration
+
 // BOOKMARK work on RangeSelector component
 // React Hook "React.useState" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function
 
@@ -102,7 +105,7 @@ function App() {
       <br /><br />
       <RangeOfPiano />
       <RangeOfSong />
-      <RangeBoundary />
+      {/* <RangeBoundary /> */}
 
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

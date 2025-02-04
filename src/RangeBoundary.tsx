@@ -21,7 +21,21 @@ function getMenuItemValue(i: number) {
   return MIDInotes[i].sharp;
 }
 
-export default function RangeBoundary() {
+// enum Blah {
+//   'Piano',
+//   'Song'
+// }
+// enum Blah {
+//   Piano,
+//   Song
+// }
+
+interface RangeBoundaryProps {
+  // RangeBoundaryType: Blah;
+  rangeBoundaryType: 'piano' | 'song';
+}
+
+export default function RangeBoundary({rangeBoundaryType}: RangeBoundaryProps) {
   // BOOKMARK make separate state for both lowest and highest
   const [age, setAge] = React.useState('');
 
@@ -36,7 +50,7 @@ export default function RangeBoundary() {
     <section>
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Lowest Key of Piano 🎹🎼</InputLabel>
+          <InputLabel id="demo-simple-select-label">Lowest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -51,7 +65,7 @@ export default function RangeBoundary() {
 
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Highest Key of Piano 🎹🎼</InputLabel>
+          <InputLabel id="demo-simple-select-label">Highest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
