@@ -6,7 +6,7 @@ export default function RangeOfPiano() {
         <section>
             Select Range Of Piano
             <br /><br />
-            <RangeBoundary rangeBoundaryType={'song'}/>
+            <RangeBoundary rangeBoundaryType={'piano'}/>
         </section>
     );
 }
