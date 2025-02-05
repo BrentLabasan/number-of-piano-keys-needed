@@ -1,4 +1,5 @@
 const MIDInotes = [
+    // {'midiNoteNumber': -1, 'frequency': -1, 'sharp': 'PICK A NOTE', 'flat': 'PICK A NOTE', 'isBlackKey': false},
     {'midiNoteNumber': 21, 'frequency': 27.5, 'sharp': 'A0', 'flat': 'A0', 'isBlackKey': false},
     {'midiNoteNumber': 22, 'frequency': 29.14, 'sharp': 'A#0', 'flat': 'Bb0', 'isBlackKey': true},
     {'midiNoteNumber': 23, 'frequency': 30.87, 'sharp': 'B0', 'flat': 'B0', 'isBlackKey': false},

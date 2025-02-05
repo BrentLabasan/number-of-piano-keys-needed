@@ -5,7 +5,7 @@ import RangeBoundary from './RangeBoundary';
 export default function RangeOfSong() {
     return (
         <section>
-            RangeOfSong
+            Select Range Of Song
             <br /><br />
             <RangeBoundary rangeBoundaryType={'piano'} />
         </section>

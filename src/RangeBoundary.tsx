@@ -37,15 +37,22 @@ interface RangeBoundaryProps {
 
 export default function RangeBoundary({rangeBoundaryType}: RangeBoundaryProps) {
   // BOOKMARK make separate state for both lowest and highest
-  const [age, setAge] = React.useState('');
+  const [boundaryLow, setBoundaryLow] = React.useState('21');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    setBoundaryLow(event.target.value as string);
+  };
+
+  const [boundaryHigh, setBoundaryHigh] = React.useState('127');
+
+  const handleChangeHigh = (event: SelectChangeEvent) => {
+    setBoundaryHigh(event.target.value as string);
   };
 
 
   // TODO draw to Inputs side by side
   // TODO buttons for 25, 49, 61, 73, 76, 88 sizes
+  // TODO default value is the -1?
   return (
     <section>
       <Box sx={{ minWidth: 120 }}>
@@ -54,7 +61,7 @@ export default function RangeBoundary({rangeBoundaryType}: RangeBoundaryProps) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={boundaryLow}
             label="Age"
             onChange={handleChange}
           >
@@ -69,9 +76,9 @@ export default function RangeBoundary({rangeBoundaryType}: RangeBoundaryProps) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={boundaryHigh}
             label="Age"
-            onChange={handleChange}
+            onChange={handleChangeHigh}
           >
             {renderMenuItems()}
           </Select>

@@ -103,6 +103,7 @@ function App() {
     <div className="App">
       {renderPianoKeys()}
       <br /><br />
+      {/* TODO 2 columns */}
       <RangeOfPiano />
       <RangeOfSong />
       {/* <RangeBoundary /> */}
