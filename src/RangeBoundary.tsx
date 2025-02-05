@@ -7,7 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import React from 'react';
 import MIDInotes from './MIDInotes';
 
-
+import './RangeBoundary.scss'
 
 
 
@@ -35,7 +35,7 @@ interface RangeBoundaryProps {
   rangeBoundaryType: 'piano' | 'song';
 }
 
-export default function RangeBoundary({rangeBoundaryType}: RangeBoundaryProps) {
+export default function RangeBoundary({ rangeBoundaryType }: RangeBoundaryProps) {
   // BOOKMARK make separate state for both lowest and highest
   const [boundaryLow, setBoundaryLow] = React.useState('21');
 
@@ -55,35 +55,45 @@ export default function RangeBoundary({rangeBoundaryType}: RangeBoundaryProps) {
   // TODO default value is the -1?
   return (
     <section>
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Lowest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={boundaryLow}
-            label="Age"
-            onChange={handleChange}
-          >
-            {renderMenuItems()}
-          </Select>
-        </FormControl>
-      </Box>
 
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Highest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={boundaryHigh}
-            label="Age"
-            onChange={handleChangeHigh}
-          >
-            {renderMenuItems()}
-          </Select>
-        </FormControl>
-      </Box>
+      <div className="row">
+        <div className="column">
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Lowest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={boundaryLow}
+                label="Age"
+                onChange={handleChange}
+              >
+                {renderMenuItems()}
+              </Select>
+            </FormControl>
+          </Box>
+        </div>
+        <div className="column">
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Highest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={boundaryHigh}
+                label="Age"
+                onChange={handleChangeHigh}
+              >
+                {renderMenuItems()}
+              </Select>
+            </FormControl>
+          </Box>
+        </div>
+      </div>
+
+
+
+
     </section>
 
   );
