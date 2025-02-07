@@ -33,21 +33,13 @@ function getMenuItemValue(i: number) {
 interface RangeBoundaryProps {
   // RangeBoundaryType: Blah;
   rangeBoundaryType: 'piano' | 'song';
+  boundaryLow: string;
+  boundaryHigh: string;
+  handleChangeLow: (event: SelectChangeEvent) => void;
+  handleChangeHigh: (event: SelectChangeEvent) => void;
 }
 
-export default function RangeBoundary({ rangeBoundaryType }: RangeBoundaryProps) {
-  // BOOKMARK make separate state for both lowest and highest
-  const [boundaryLow, setBoundaryLow] = React.useState('21');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setBoundaryLow(event.target.value as string);
-  };
-
-  const [boundaryHigh, setBoundaryHigh] = React.useState('127');
-
-  const handleChangeHigh = (event: SelectChangeEvent) => {
-    setBoundaryHigh(event.target.value as string);
-  };
+export default function RangeBoundary({ rangeBoundaryType, boundaryLow, boundaryHigh, handleChangeLow, handleChangeHigh }: RangeBoundaryProps) {
 
 
   // TODO draw to Inputs side by side
@@ -66,7 +58,7 @@ export default function RangeBoundary({ rangeBoundaryType }: RangeBoundaryProps)
                 id="demo-simple-select"
                 value={boundaryLow}
                 label="Age"
-                onChange={handleChange}
+                onChange={handleChangeLow}
               >
                 {renderMenuItems()}
               </Select>

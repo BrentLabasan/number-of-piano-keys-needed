@@ -55,7 +55,7 @@ for (let i = 21; i <= 127; i++) {
   const noteIndex = i % 12;
   const [sharp, flat, isBlackKey] = noteNames[noteIndex];
   const frequency = 440 * Math.pow(2, (i - 69) / 12);
-  
+
   midiNotes.push({
     midi: i,
     frequency: parseFloat(frequency.toFixed(2)),
@@ -98,13 +98,31 @@ function renderPianoKeys() {
   });
 }
 
+const [pianoBoundaryLow, setPianoBoundaryLow] = React.useState('21');
+const [pianoBboundaryHigh, setPianoBoundaryHigh] = React.useState('127');
+
+const handlePianoBoundaryChangeLow = (event: SelectChangeEvent) => {
+  setPianoBoundaryLow(event.target.value as string);
+};
+
+
+const handlePianoBoundaryChangeHigh = (event: SelectChangeEvent) => {
+  setPianoBoundaryHigh(event.target.value as string);
+};
+
+
 function App() {
   return (
     <div className="App">
       {renderPianoKeys()}
       <br /><br />
       {/* TODO 2 columns */}
-      <RangeOfPiano />
+      <RangeOfPiano
+        boundaryLow={pianoBoundaryLow}
+        boundaryHigh={pianoBboundaryHigh}
+        handlePianoBoundaryChangeLow={handlePianoBoundaryChangeLow}
+        handlePianoBoundaryChangeHigh={handlePianoBoundaryChangeHigh}
+      />
       <RangeOfSong />
       {/* <RangeBoundary /> */}
 
