@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PianoKey from './PianoKey';
@@ -98,20 +98,62 @@ function renderPianoKeys() {
   });
 }
 
-const [pianoBoundaryLow, setPianoBoundaryLow] = React.useState('21');
-const [pianoBboundaryHigh, setPianoBoundaryHigh] = React.useState('127');
-
-const handlePianoBoundaryChangeLow = (event: SelectChangeEvent) => {
-  setPianoBoundaryLow(event.target.value as string);
-};
 
 
-const handlePianoBoundaryChangeHigh = (event: SelectChangeEvent) => {
-  setPianoBoundaryHigh(event.target.value as string);
+
+// have a state for an array representing all RangeOfSong components that have been created
+// for every pbkect om arrau, remder a RangeOfSong
+const initialRangeOfSongsObject = {
+  low: '21',
+  high: '127',
 };
 
 
 function App() {
+
+  const [pianoBoundaryLow, setPianoBoundaryLow] = React.useState('21');
+  const [pianoBboundaryHigh, setPianoBoundaryHigh] = React.useState('127');
+
+  const handlePianoBoundaryChangeLow = (event: SelectChangeEvent) => {
+    setPianoBoundaryLow(event.target.value as string);
+  };
+
+  const handlePianoBoundaryChangeHigh = (event: SelectChangeEvent) => {
+    setPianoBoundaryHigh(event.target.value as string);
+  };
+
+  const [arrayRangeOfSongs, modifyArrayRangeOfSongs] = useState(new Array(initialRangeOfSongsObject));
+
+  // low or high, index of the component
+  // BOOKMARK send this as a prop in renderAll_rangeOfSongComponents()
+  const handleChangeTo_arrayRangeOfSongs = (event: SelectChangeEvent, indexOfComponentToChange: number, areModifyingLow: boolean) => {
+    const copy = JSON.parse(JSON.stringify(arrayRangeOfSongs));
+    if (areModifyingLow) {
+      copy[indexOfComponentToChange].low = event.target.value as string
+    } else {
+      copy[indexOfComponentToChange].high = event.target.value as string
+    }
+
+    modifyArrayRangeOfSongs(copy);
+  }
+
+  function renderAll_rangeOfSongComponents() {
+    return arrayRangeOfSongs.map((obj_rangeOfSong, i) => {
+      return <RangeOfSong
+        key={i}
+        boundaryLow={obj_rangeOfSong.low}
+        boundaryHigh={obj_rangeOfSong.high}
+        handlePianoBoundaryChangeLow={handlePianoBoundaryChangeLow}
+        handlePianoBoundaryChangeHigh={handlePianoBoundaryChangeHigh}
+      />;
+    });
+  }
+
+
+
+
+
+
   return (
     <div className="App">
       {renderPianoKeys()}
@@ -123,7 +165,10 @@ function App() {
         handlePianoBoundaryChangeLow={handlePianoBoundaryChangeLow}
         handlePianoBoundaryChangeHigh={handlePianoBoundaryChangeHigh}
       />
-      <RangeOfSong />
+     
+
+      {renderAll_rangeOfSongComponents()}
+      
       {/* <RangeBoundary /> */}
 
       {/* <header className="App-header">
