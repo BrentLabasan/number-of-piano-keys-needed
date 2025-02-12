@@ -127,6 +127,7 @@ function App() {
   // low or high, index of the component
   // BOOKMARK send this as a prop in renderAll_rangeOfSongComponents()
   const handleChangeTo_arrayRangeOfSongs = (event: SelectChangeEvent, indexOfComponentToChange: number, areModifyingLow: boolean) => {
+    alert (typeof indexOfComponentToChange)
     const copy = JSON.parse(JSON.stringify(arrayRangeOfSongs));
     if (areModifyingLow) {
       copy[indexOfComponentToChange].low = event.target.value as string
@@ -141,10 +142,11 @@ function App() {
     return arrayRangeOfSongs.map((obj_rangeOfSong, i) => {
       return <RangeOfSong
         key={i}
+        index={i}
         boundaryLow={obj_rangeOfSong.low}
         boundaryHigh={obj_rangeOfSong.high}
-        handlePianoBoundaryChangeLow={handlePianoBoundaryChangeLow}
-        handlePianoBoundaryChangeHigh={handlePianoBoundaryChangeHigh}
+        handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}
+        // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
       />;
     });
   }
@@ -159,6 +161,10 @@ function App() {
       {renderPianoKeys()}
       <br /><br />
       {/* TODO 2 columns */}
+
+
+      {/* BOOKMARK Feb 10 just have the 2 components below have their own separate UIs for the lower and upper */}
+
       <RangeOfPiano
         boundaryLow={pianoBoundaryLow}
         boundaryHigh={pianoBboundaryHigh}

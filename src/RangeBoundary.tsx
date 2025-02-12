@@ -11,7 +11,7 @@ import './RangeBoundary.scss'
 
 
 
-function renderMenuItems() {
+export function renderMenuItems() {
   return MIDInotes.map((note, i) => {
     return <MenuItem value={note.midiNoteNumber} key={note.midiNoteNumber}>{getMenuItemValue(i)}</MenuItem>
   });
@@ -30,13 +30,25 @@ function getMenuItemValue(i: number) {
 //   Song
 // }
 
-interface RangeBoundaryProps {
+// interface RangeBoundaryProps {
+//   // RangeBoundaryType: Blah;
+//   rangeBoundaryType: 'piano' | 'song';
+//   boundaryLow: string;
+//   boundaryHigh: string;
+//   handleChangeLow: (event: SelectChangeEvent,
+//     indexOfComponentToChange?: number | undefined,
+//     areModifyingLow?: boolean) => void;
+//   handleChangeHigh: (event: SelectChangeEvent) => void;
+//   indexOfSongComponent?: number;
+// }
+type RangeBoundaryProps = {
   // RangeBoundaryType: Blah;
   rangeBoundaryType: 'piano' | 'song';
   boundaryLow: string;
   boundaryHigh: string;
   handleChangeLow: (event: SelectChangeEvent) => void;
   handleChangeHigh: (event: SelectChangeEvent) => void;
+  indexOfSongComponent?: number;
 }
 
 export default function RangeBoundary({ rangeBoundaryType, boundaryLow, boundaryHigh, handleChangeLow, handleChangeHigh }: RangeBoundaryProps) {
