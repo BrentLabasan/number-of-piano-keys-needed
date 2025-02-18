@@ -1,5 +1,7 @@
 export default interface note {
-    midiNumber?: Number,
-    noteName?: String,
-    frequencyInHz?: Number,
-  }
+  midi: number,
+  frequency: number;
+  sharp: string;
+  flat: string;
+  isBlackKey: boolean;
+}

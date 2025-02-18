@@ -79,14 +79,12 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
             -OR-
             Upload a MIDI file.
-            {/* BOOKMARK button or space to upload MIDI file
+            {/* TODO button or space to upload MIDI file
                 code to find lowest and highest notes in MID file
             */}
             <br />
             <br />
             <hr />
-            {/* BOOKMARK Feb 11 */}
-            STATUS: Song fits into current piano range.
         </section>
     );
 }

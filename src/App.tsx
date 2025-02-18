@@ -23,16 +23,15 @@ const arrNoteName_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G',];
 
 
 
-const arrNotes: note[] = new Array();
 
 
 
 
-// BOOKMARK Replace my code with ChatGPT code
+// TODO Replace my code with ChatGPT code
 
-const midiNotes = [];
+const midiNotes: note[] = [];
 
-const noteNames = [
+const noteNames:([string, string, boolean])[] = [
   ["C", "C", false],
   ["C#", "Db", true],
   ["D", "D", false],
@@ -50,7 +49,12 @@ const noteNames = [
 for (let i = 21; i <= 127; i++) {
   const octave = Math.floor(i / 12) - 1;
   const noteIndex = i % 12;
-  const [sharp, flat, isBlackKey] = noteNames[noteIndex];
+
+  // const [sharp, flat, isBlackKey] = noteNames[noteIndex];
+  const [sharp, flat] = noteNames[noteIndex];
+  const isBlackKey: boolean = noteNames[noteIndex][2];
+
+
   const frequency = 440 * Math.pow(2, (i - 69) / 12);
 
   midiNotes.push({
@@ -58,39 +62,16 @@ for (let i = 21; i <= 127; i++) {
     frequency: parseFloat(frequency.toFixed(2)),
     sharp: `${sharp}${octave}`,
     flat: `${flat}${octave}`,
-    isBlackKey
-  });
+    isBlackKey: isBlackKey
+});
 }
 
 console.log(midiNotes.toString());
 
 
-
-
-
-/*
-0 1 2 3 4 5 6 1 2 3 4 5 6  /// 
-*/
-
-// iterate through the MIDI numbers
-let isCurrKeyWhite = true; // if starting on A0
-// BM determine when isCurrKeyWhite true or false
-let prevKey = 'G#';
-for (let i = 21; i <= 108; i++) {
-  const obj: note = new Object();
-  obj.midiNumber = i;
-  const formula = i % 7
-  // console.log("iterator", i , i % 7)
-  obj.noteName = arrNoteName_letter[formula];
-  arrNotes.push(obj)
-}
-
-console.log('arrNotes', arrNotes);
-
-
-// TODO draw white and black keys in differemt places
+// BOOKMARK draw white and black keys in differemt places
 function renderPianoKeys() {
-  return arrNotes.map((note, i) => {
+  return midiNotes.map((note, i) => {
     return <PianoKey key={i} {...note} />;
   });
 }
@@ -162,8 +143,6 @@ function App() {
       <br /><br />
       {/* TODO 2 columns */}
 
-
-      {/* BOOKMARK Feb 10 just have the 2 components below have their own separate UIs for the lower and upper */}
 
       <RangeOfPiano
         boundaryLow={pianoBoundaryLow}
