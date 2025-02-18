@@ -17,9 +17,6 @@ import RangeOfSong from './RangeOfSong';
 //  TODOs
 // take pic of configuration
 
-// BOOKMARK work on RangeSelector component
-// React Hook "React.useState" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function
-
 //  const arrNoteName_letter = new Array(7);
 //  const arrNoteName_letter = ['C', 'D', 'E', 'F', 'G', 'A', 'B', ];
 const arrNoteName_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G',];
@@ -125,9 +122,8 @@ function App() {
   const [arrayRangeOfSongs, modifyArrayRangeOfSongs] = useState(new Array(initialRangeOfSongsObject));
 
   // low or high, index of the component
-  // BOOKMARK send this as a prop in renderAll_rangeOfSongComponents()
   const handleChangeTo_arrayRangeOfSongs = (event: SelectChangeEvent, indexOfComponentToChange: number, areModifyingLow: boolean) => {
-    alert (typeof indexOfComponentToChange)
+    // alert (typeof indexOfComponentToChange)
     const copy = JSON.parse(JSON.stringify(arrayRangeOfSongs));
     if (areModifyingLow) {
       copy[indexOfComponentToChange].low = event.target.value as string
@@ -143,6 +139,10 @@ function App() {
       return <RangeOfSong
         key={i}
         index={i}
+
+        pianoBoundaryLow={pianoBoundaryLow}
+        pianoBoundaryHigh={pianoBboundaryHigh}
+
         boundaryLow={obj_rangeOfSong.low}
         boundaryHigh={obj_rangeOfSong.high}
         handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}

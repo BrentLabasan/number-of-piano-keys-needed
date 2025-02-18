@@ -13,6 +13,9 @@ type RangeOfSongProps = {
     // boundaryLow: string;
     boundaryLow: string;
     boundaryHigh: string;
+
+    pianoBoundaryLow: string;
+    pianoBoundaryHigh: string;
     // handlePianoBoundaryChangeLow: SelectChangeEvent;
     // handlePianoBoundaryChangeLow: SelectChangeEvent<HTMLInputElement>;
     // handlePianoBoundaryChangeLow: ChangeEvent<HTMLInputElement >;
@@ -25,10 +28,17 @@ type RangeOfSongProps = {
 }
 
 
-export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, handleChangeTo_arrayRangeOfSongs }: RangeOfSongProps) {
+export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pianoBoundaryLow, pianoBoundaryHigh, handleChangeTo_arrayRangeOfSongs }: RangeOfSongProps) {
+    
+    const doesSongFitItPianoRange = pianoBoundaryLow <= boundaryLow && boundaryHigh >= pianoBoundaryHigh;
+    
     return (
         <section>
-            Select Range Of Song {index} a {boundaryLow} b
+            Select Range Of Song
+            <br />
+            index: {index}
+            <br /><br />
+            STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
             <br /><br />
 
 
@@ -75,6 +85,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, han
             <br />
             <br />
             <hr />
+            {/* BOOKMARK Feb 11 */}
             STATUS: Song fits into current piano range.
         </section>
     );
