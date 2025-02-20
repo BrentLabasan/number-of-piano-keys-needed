@@ -79,7 +79,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
             -OR-
             Upload a MIDI file.
-            {/* TODO button or space to upload MIDI file
+            {/* BUTTON button or space to upload MIDI file
                 code to find lowest and highest notes in MID file
             */}
             <br />

@@ -46,7 +46,8 @@ const noteNames:([string, string, boolean])[] = [
   ["B", "B", false]
 ];
 
-for (let i = 21; i <= 127; i++) {
+// for (let i = 21; i <= 127; i++) {
+for (let i = 21; i <= 108; i++) {
   const octave = Math.floor(i / 12) - 1;
   const noteIndex = i % 12;
 
@@ -69,9 +70,13 @@ for (let i = 21; i <= 127; i++) {
 console.log(midiNotes.toString());
 
 
-// BOOKMARK draw white and black keys in differemt places
-function renderPianoKeys() {
-  return midiNotes.map((note, i) => {
+function renderBlackPianoKeys() {
+  return midiNotes.filter((note) => note.isBlackKey).map((note, i) => {
+    return <PianoKey key={i} {...note} />;
+  });
+}
+function renderWhitePianoKeys() {
+  return midiNotes.filter((note) => !note.isBlackKey).map((note, i) => {
     return <PianoKey key={i} {...note} />;
   });
 }
@@ -139,7 +144,9 @@ function App() {
 
   return (
     <div className="App">
-      {renderPianoKeys()}
+      {renderBlackPianoKeys()}
+      <br />
+      {renderWhitePianoKeys()}
       <br /><br />
       {/* TODO 2 columns */}
 
