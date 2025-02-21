@@ -31,7 +31,7 @@ const arrNoteName_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G',];
 
 const midiNotes: note[] = [];
 
-const noteNames:([string, string, boolean])[] = [
+const noteNames: ([string, string, boolean])[] = [
   ["C", "C", false],
   ["C#", "Db", true],
   ["D", "D", false],
@@ -64,7 +64,7 @@ for (let i = 21; i <= 108; i++) {
     sharp: `${sharp}${octave}`,
     flat: `${flat}${octave}`,
     isBlackKey: isBlackKey
-});
+  });
 }
 
 console.log(midiNotes.toString());
@@ -132,7 +132,7 @@ function App() {
         boundaryLow={obj_rangeOfSong.low}
         boundaryHigh={obj_rangeOfSong.high}
         handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}
-        // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
+      // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
       />;
     });
   }
@@ -144,9 +144,16 @@ function App() {
 
   return (
     <div className="App">
-      {renderBlackPianoKeys()}
+      <div id="containerBlackKeys">
+        <span id="span1">
+
+        {renderBlackPianoKeys()}
+        </span>
+      </div>
+      <div id="containerWhiteKeys">
+        {renderWhitePianoKeys()}
+      </div>
       <br />
-      {renderWhitePianoKeys()}
       <br /><br />
       {/* TODO 2 columns */}
 
@@ -157,10 +164,10 @@ function App() {
         handlePianoBoundaryChangeLow={handlePianoBoundaryChangeLow}
         handlePianoBoundaryChangeHigh={handlePianoBoundaryChangeHigh}
       />
-     
+
 
       {renderAll_rangeOfSongComponents()}
-      
+
       {/* <RangeBoundary /> */}
 
       {/* <header className="App-header">

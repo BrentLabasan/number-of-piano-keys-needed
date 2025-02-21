@@ -32,7 +32,21 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#containerBlackKeys {
+  border: 3px dotted red;
+}
+
+#containerWhiteKeys {
+  border: 3px dotted blue;
+}
+
+#span1 {
+  /* BOOKMARK position black keys leftwards */
+  border: 3px dotted orange;
 }

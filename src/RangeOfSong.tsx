@@ -29,9 +29,9 @@ type RangeOfSongProps = {
 
 
 export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pianoBoundaryLow, pianoBoundaryHigh, handleChangeTo_arrayRangeOfSongs }: RangeOfSongProps) {
-    
+
     const doesSongFitItPianoRange = pianoBoundaryLow <= boundaryLow && boundaryHigh >= pianoBoundaryHigh;
-    
+
     return (
         <section>
             Select Range Of Song
@@ -79,12 +79,19 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
             -OR-
             Upload a MIDI file.
-            {/* BUTTON button or space to upload MIDI file
+            <br /><br />
+            <input type="file" id="file-input" accept=".mid,.midi" />
+
+                <div id="drop-area">
+                    <p>Drag and drop a MIDI file here</p>
+                </div>
+
+                {/* BUTTON button or space to upload MIDI file
                 code to find lowest and highest notes in MID file
             */}
-            <br />
-            <br />
-            <hr />
+                <br />
+                <br />
+                <hr />
         </section>
     );
 }

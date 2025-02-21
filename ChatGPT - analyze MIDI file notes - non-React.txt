@@ -1,0 +1,150 @@
+Here's a JavaScript solution for uploading a MIDI file to a webpage and determining the lowest and highest notes. We'll use the `MIDI.js` library for handling MIDI files, along with basic HTML for the file input and drag-and-drop functionality.
+
+### 1. HTML for the File Upload
+This part includes the necessary HTML to let users either browse their files or drag and drop the MIDI file.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI Note Analyzer</title>
+    <style>
+        #drop-area {
+            width: 100%;
+            height: 300px;
+            border: 2px dashed #007BFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #drop-area.hover {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>MIDI Note Analyzer</h1>
+    <p>Select a MIDI file to upload:</p>
+    <input type="file" id="file-input" accept=".mid,.midi">
+    
+    <div id="drop-area">
+        <p>Drag and drop a MIDI file here</p>
+    </div>
+
+    <h2>Results:</h2>
+    <p>Lowest Note: <span id="lowest-note">N/A</span></p>
+    <p>Highest Note: <span id="highest-note">N/A</span></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+```
+
+### 2. JavaScript (app.js)
+
+This JavaScript code will handle the file input, drag-and-drop, and MIDI file parsing. It uses the [Tone.js MIDI](https://github.com/Tonejs/Midi) library to read and extract the notes.
+
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+    const fileInput = document.getElementById('file-input');
+    const dropArea = document.getElementById('drop-area');
+    const lowestNoteDisplay = document.getElementById('lowest-note');
+    const highestNoteDisplay = document.getElementById('highest-note');
+
+    // Helper function to handle file reading
+    function readMidiFile(file) {
+        const reader = new FileReader();
+        reader.onload = async function (event) {
+            const midiData = event.target.result;
+            try {
+                const midi = new Midi(midiData); // Parse MIDI data using Tone.js MIDI
+                let lowestNote = Infinity;
+                let highestNote = -Infinity;
+
+                // Loop through all tracks and their notes
+                midi.tracks.forEach(track => {
+                    track.notes.forEach(note => {
+                        if (note.midi < lowestNote) lowestNote = note.midi;
+                        if (note.midi > highestNote) highestNote = note.midi;
+                    });
+                });
+
+                // Display the results
+                lowestNoteDisplay.textContent = lowestNote === Infinity ? "N/A" : noteToName(lowestNote);
+                highestNoteDisplay.textContent = highestNote === -Infinity ? "N/A" : noteToName(highestNote);
+
+            } catch (error) {
+                alert('Error parsing MIDI file.');
+                console.error(error);
+            }
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+    // Convert MIDI note number to note name (e.g., 60 -> C4)
+    function noteToName(midiNote) {
+        const noteNames = [
+            'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
+        ];
+        const octave = Math.floor(midiNote / 12) - 1; // Calculate the octave
+        const note = noteNames[midiNote % 12];
+        return `${note}${octave}`;
+    }
+
+    // Handle file input change
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            readMidiFile(file);
+        }
+    });
+
+    // Handle drag and drop
+    dropArea.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        dropArea.classList.add('hover');
+    });
+
+    dropArea.addEventListener('dragleave', () => {
+        dropArea.classList.remove('hover');
+    });
+
+    dropArea.addEventListener('drop', (event) => {
+        event.preventDefault();
+        dropArea.classList.remove('hover');
+        const file = event.dataTransfer.files[0];
+        if (file) {
+            readMidiFile(file);
+        }
+    });
+});
+```
+
+### Explanation:
+
+1. **HTML Part**:
+   - A file input (`<input type="file">`) allows users to select a MIDI file from their system.
+   - A `div` element with the id `drop-area` enables drag-and-drop functionality.
+   - The results (lowest and highest notes) are displayed in the `<span>` elements.
+
+2. **JavaScript Part**:
+   - **File Reading**: The `FileReader` reads the MIDI file as an `ArrayBuffer` when a user selects a file or drops it.
+   - **MIDI Parsing**: The MIDI file is parsed using the `Tone.js MIDI` library to extract the notes.
+   - **Finding Notes**: The `notes` in each track are checked to determine the lowest and highest MIDI note values.
+   - **Note Conversion**: The MIDI note number is converted into a human-readable note name (like C4, D#5) using the `noteToName` function.
+
+3. **Drag-and-Drop and File Input**: The drag-and-drop area lets users drag a file directly into the box, while the file input allows browsing the system's folder explorer.
+
+### How it Works:
+- Upload or drag-and-drop a MIDI file.
+- The script reads the file and extracts the note data.
+- The lowest and highest notes are determined and displayed as note names (e.g., "C4", "A#3").
+
+### Requirements:
+- You will need an internet connection to load the Tone.js MIDI library from the CDN.
+
+This solution is simple and should work for most basic MIDI files, assuming they contain note information!
