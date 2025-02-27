@@ -12,8 +12,11 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import RangeBoundary from './RangeBoundary';
 import RangeOfPiano from './RangeOfPiano';
-import RangeOfSong from './RangeOfSong';
+import RangeOfSong from './RangeOfSong_ManualEntry';
+import { Button } from '@mui/material';
 
+import TouchAppIcon from '@mui/icons-material/TouchApp';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 //  TODOs
 // take pic of configuration
 
@@ -167,6 +170,14 @@ function App() {
 
 
       {renderAll_rangeOfSongComponents()}
+
+      + ADD ANOTHER NOTE RANGE
+      <br />
+      <Button variant="contained" size="large" startIcon={<TouchAppIcon />}>MANUAL ENTRY</Button>
+      &nbsp;
+      or
+      &nbsp;
+      <Button variant="contained" size="large" endIcon={<UploadFileIcon />}>MIDI UPLOAD</Button>
 
       {/* <RangeBoundary /> */}
 
