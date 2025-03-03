@@ -7,6 +7,7 @@ import { Box, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/ma
 
 import './RangeOfSong.scss';
 import './RangeBoundary.scss'
+import './RangeOfSong_MIDIUpload.scss';
 
 import { renderMenuItems } from './RangeBoundary';
 
@@ -77,7 +78,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
   };
 
   return (
-    <section>
+    <section id="parentContainer">
       Select Range Of Song
       <br />
       index: {index}

@@ -3,7 +3,7 @@ import { Midi } from '@tonejs/midi';
 import * as Tone from "tone";
 import RangeBoundary from './RangeBoundary';
 import { Box, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material';
-
+import './RangeOfSong_ManualEntry.scss';
 
 import './RangeOfSong.scss';
 import './RangeBoundary.scss'
@@ -77,7 +77,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
   };
 
   return (
-    <section>
+    <section id="parentContainer">
       Select Range Of Song
       <br />
       index: {index}
