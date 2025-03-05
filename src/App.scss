@@ -54,3 +54,13 @@ body {
   /* BOOKMARK position black keys leftwards */
   border: 3px dotted orange;
 }
+
+.container {
+  display: flex;
+
+  #leftSide,
+  #rightSide {
+    flex: 1;
+    /* Each div will take up 50% of the container width */
+  }
+}

@@ -150,7 +150,7 @@ function App() {
       <div id="containerBlackKeys">
         <span id="span1">
 
-        {renderBlackPianoKeys()}
+          {renderBlackPianoKeys()}
         </span>
       </div>
       <div id="containerWhiteKeys">
@@ -158,26 +158,39 @@ function App() {
       </div>
       <br />
       <br /><br />
+
+
       {/* TODO 2 columns */}
 
+      <div className="container">
 
-      <RangeOfPiano
-        boundaryLow={pianoBoundaryLow}
-        boundaryHigh={pianoBboundaryHigh}
-        handlePianoBoundaryChangeLow={handlePianoBoundaryChangeLow}
-        handlePianoBoundaryChangeHigh={handlePianoBoundaryChangeHigh}
-      />
+        <div id="leftSide">
+          <RangeOfPiano
+            boundaryLow={pianoBoundaryLow}
+            boundaryHigh={pianoBboundaryHigh}
+            handlePianoBoundaryChangeLow={handlePianoBoundaryChangeLow}
+            handlePianoBoundaryChangeHigh={handlePianoBoundaryChangeHigh}
+          />
+
+        </div>
+
+        <div id="rightSide">
+          {renderAll_rangeOfSongComponents()}
+
+          + ADD ANOTHER NOTE RANGE
+          <br />
+          <Button variant="contained" size="large" startIcon={<TouchAppIcon />}>MANUAL ENTRY</Button>
+          &nbsp;
+          or
+          &nbsp;
+          <Button variant="contained" size="large" endIcon={<UploadFileIcon />}>MIDI UPLOAD</Button>
+        </div>
+
+      </div>
 
 
-      {renderAll_rangeOfSongComponents()}
 
-      + ADD ANOTHER NOTE RANGE
-      <br />
-      <Button variant="contained" size="large" startIcon={<TouchAppIcon />}>MANUAL ENTRY</Button>
-      &nbsp;
-      or
-      &nbsp;
-      <Button variant="contained" size="large" endIcon={<UploadFileIcon />}>MIDI UPLOAD</Button>
+
 
       {/* <RangeBoundary /> */}
 
