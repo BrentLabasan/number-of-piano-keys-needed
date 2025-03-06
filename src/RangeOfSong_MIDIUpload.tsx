@@ -79,7 +79,10 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
   return (
     <section id="parentContainer">
-      Select Range Of Song
+      <h2>
+
+      Range Of Song - MIDI Upload
+      </h2>
       <br />
       index: {index}
       <br /><br />

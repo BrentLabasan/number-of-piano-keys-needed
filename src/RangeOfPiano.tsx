@@ -18,8 +18,10 @@ type RangeOfPianoProps = {
 export default function RangeOfPiano({ boundaryLow, boundaryHigh, handlePianoBoundaryChangeLow, handlePianoBoundaryChangeHigh }: RangeOfPianoProps) {
     return (
         <section className="parentContainer_rangeOfPiano">
-            Select Range Of Piano
-            <br /><br />
+            <h2>
+                Range Of Piano
+            </h2>
+
             <RangeBoundary rangeBoundaryType={'piano'}
                 boundaryLow={boundaryLow}
                 boundaryHigh={boundaryHigh}

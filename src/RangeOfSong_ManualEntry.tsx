@@ -78,8 +78,10 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
   return (
     <section id="parentContainer">
-      Select Range Of Song
-      <br />
+      <h2>
+
+      Range Of Song - User Select
+      </h2>
       index: {index}
       <br /><br />
       STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
@@ -120,30 +122,6 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
           </Box>
         </div>
       </div>
-
-      -OR-
-      Upload a MIDI file.
-      <br /><br />
-
-
-
-      <div
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={handleDrop}
-        className="p-4 border-2 border-dashed border-gray-300 rounded-lg text-center"
-      >
-        <input type="file" accept=".mid" onChange={handleFileChange} className="mb-4" />
-        <p>Drag & drop a MIDI file here or select one.</p>
-        {highestNote && lowestNote && (
-          <div className="mt-4">
-            <p>Lowest Note: {lowestNote}</p>
-            <p>Highest Note: {highestNote}</p>
-          </div>
-        )}
-      </div>
-
-      <br />
-      <hr />
     </section>
   );
 }

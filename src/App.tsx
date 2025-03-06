@@ -87,12 +87,18 @@ function renderWhitePianoKeys() {
 
 
 
-// have a state for an array representing all RangeOfSong components that have been created
-// for every pbkect om arrau, remder a RangeOfSong
-const initialRangeOfSongsObject = {
-  low: '21',
-  high: '127',
-};
+const arr = [
+  {
+    type: 'userSelect',
+    low: '21',
+    high: '127',
+  },
+  {
+    type: 'midiUpload',
+    low: '1',
+    high: '1',
+  }
+];
 
 
 function App() {
@@ -108,7 +114,7 @@ function App() {
     setPianoBoundaryHigh(event.target.value as string);
   };
 
-  const [arrayRangeOfSongs, modifyArrayRangeOfSongs] = useState(new Array(initialRangeOfSongsObject));
+  const [arrayRangeOfSongs, modifyArrayRangeOfSongs] = useState(arr);
 
   // low or high, index of the component
   const handleChangeTo_arrayRangeOfSongs = (event: SelectChangeEvent, indexOfComponentToChange: number, areModifyingLow: boolean) => {
@@ -176,9 +182,12 @@ function App() {
 
         <div id="rightSide">
           {renderAll_rangeOfSongComponents()}
+<br />
+<h3>
 
           + ADD ANOTHER NOTE RANGE
-          <br />
+</h3>
+          {/* <br /> */}
           <Button variant="contained" size="large" startIcon={<TouchAppIcon />}>MANUAL ENTRY</Button>
           &nbsp;
           or
