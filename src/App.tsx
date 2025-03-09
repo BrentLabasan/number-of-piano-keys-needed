@@ -12,7 +12,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import RangeBoundary from './RangeBoundary';
 import RangeOfPiano from './RangeOfPiano';
-import RangeOfSong from './RangeOfSong_ManualEntry';
+import RangeOfSong_ManualEntry from './RangeOfSong_ManualEntry';
+import RangeOfSong_MIDIUpload from './RangeOfSong_MIDIUpload';
 import { Button } from '@mui/material';
 
 import TouchAppIcon from '@mui/icons-material/TouchApp';
@@ -87,7 +88,7 @@ function renderWhitePianoKeys() {
 
 
 
-const arr = [
+const arrRangeOfSongComponents_initial = [
   {
     type: 'userSelect',
     low: '21',
@@ -114,12 +115,12 @@ function App() {
     setPianoBoundaryHigh(event.target.value as string);
   };
 
-  const [arrayRangeOfSongs, modifyArrayRangeOfSongs] = useState(arr);
+  const [arrayRangeOfSongs_state, modifyArrayRangeOfSongs] = useState(arrRangeOfSongComponents_initial);
 
   // low or high, index of the component
   const handleChangeTo_arrayRangeOfSongs = (event: SelectChangeEvent, indexOfComponentToChange: number, areModifyingLow: boolean) => {
     // alert (typeof indexOfComponentToChange)
-    const copy = JSON.parse(JSON.stringify(arrayRangeOfSongs));
+    const copy = JSON.parse(JSON.stringify(arrayRangeOfSongs_state));
     if (areModifyingLow) {
       copy[indexOfComponentToChange].low = event.target.value as string
     } else {
@@ -130,8 +131,9 @@ function App() {
   }
 
   function renderAll_rangeOfSongComponents() {
-    return arrayRangeOfSongs.map((obj_rangeOfSong, i) => {
-      return <RangeOfSong
+    return arrayRangeOfSongs_state.map((obj_rangeOfSong, i) => {
+      if (obj_rangeOfSong.type === 'userSelect') {
+        return <RangeOfSong_ManualEntry
         key={i}
         index={i}
 
@@ -143,6 +145,22 @@ function App() {
         handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}
       // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
       />;
+      } else {
+        return <RangeOfSong_MIDIUpload
+        key={i}
+        index={i}
+
+        pianoBoundaryLow={pianoBoundaryLow}
+        pianoBoundaryHigh={pianoBboundaryHigh}
+
+        boundaryLow={obj_rangeOfSong.low}
+        boundaryHigh={obj_rangeOfSong.high}
+        handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}
+      // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
+        />;
+        
+      }
+     
     });
   }
 

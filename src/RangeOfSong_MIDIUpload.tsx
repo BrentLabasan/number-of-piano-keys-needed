@@ -89,7 +89,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
       STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
       <br /><br />
 
-
+{/* 
       <div className="row">
         <div className="column">
           <Box sx={{ minWidth: 120 }}>
@@ -123,9 +123,9 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
             </FormControl>
           </Box>
         </div>
-      </div>
+      </div> */}
 
-      -OR-
+
       Upload a MIDI file.
       <br /><br />
 
@@ -146,8 +146,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
         )}
       </div>
 
-      <br />
-      <hr />
+
     </section>
   );
 }
