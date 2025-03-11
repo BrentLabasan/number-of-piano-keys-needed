@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Midi } from '@tonejs/midi';
 import * as Tone from "tone";
 import RangeBoundary from './RangeBoundary';
-import { Box, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material';
+import { Box, Card, Divider, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material';
 import './RangeOfSong_ManualEntry.scss';
 
 import './RangeOfSong.scss';
@@ -77,51 +77,81 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
   };
 
   return (
-    <section id="parentContainer">
-      <h2>
+    // <section id="parentContainer">
+    <Card
+      variant="outlined"
+    // sx={{ maxWidth: 360 }}
+    >
+      <Box sx={{ p: 2 }}>
+        <h2>
 
-      Range Of Song - User Select
-      </h2>
-      index: {index}
-      <br /><br />
-      STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
-      <br /><br />
+          Range Of Song - User Select
+        </h2>
+        {/* index: {index} */}
+      </Box>
+
+      {/* TODO Why doesn't this divider extend all the way to the right? */}
+
+      <Divider />
+      {/* TODO why does this cause an error? */}
+      {/* <Divider variant="middle /> */}
 
 
-      <div className="row">
-        <div className="column">
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Lowest Key of Song 🎼</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={boundaryLow}
-                label="Age"
-                onChange={(e) => handleChangeTo_arrayRangeOfSongs(e, index, true)}
-              >
-                {renderMenuItems()}
-              </Select>
-            </FormControl>
-          </Box>
+      <Box sx={{ p: 2 }}>
+
+
+
+
+
+
+        <div className="row">
+          <div className="column">
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Select Lowest Key of Song 🎼</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={boundaryLow}
+                  label="Age"
+                  onChange={(e) => handleChangeTo_arrayRangeOfSongs(e, index, true)}
+                >
+                  {renderMenuItems()}
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+          <div className="column">
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Select Highest Key of Song 🎼</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={boundaryHigh}
+                  label="Age"
+                  onChange={(e) => handleChangeTo_arrayRangeOfSongs(e, index, false)}
+                >
+                  {renderMenuItems()}
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
         </div>
-        <div className="column">
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Highest Key of Song 🎼</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={boundaryHigh}
-                label="Age"
-                onChange={(e) => handleChangeTo_arrayRangeOfSongs(e, index, false)}
-              >
-                {renderMenuItems()}
-              </Select>
-            </FormControl>
-          </Box>
-        </div>
-      </div>
-    </section>
+
+      </Box>
+
+
+      <Divider />
+
+
+      <Box sx={{ p: 2 }}>
+
+        STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
+
+      </Box>
+    </Card>
+
+    // </section>
   );
 }

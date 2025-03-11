@@ -64,7 +64,7 @@ export default function RangeBoundary({ rangeBoundaryType, boundaryLow, boundary
         <div className="column">
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Lowest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
+              <InputLabel id="demo-simple-select-label">Select Lowest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -80,7 +80,7 @@ export default function RangeBoundary({ rangeBoundaryType, boundaryLow, boundary
         <div className="column">
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Highest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
+              <InputLabel id="demo-simple-select-label">Select Highest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
