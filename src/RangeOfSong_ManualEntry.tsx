@@ -99,11 +99,6 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
       <Box sx={{ p: 2 }}>
 
-
-
-
-
-
         <div className="row">
           <div className="column">
             <Box sx={{ minWidth: 120 }}>

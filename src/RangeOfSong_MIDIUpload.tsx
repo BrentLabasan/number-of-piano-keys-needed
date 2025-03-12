@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Midi } from '@tonejs/midi';
 import * as Tone from "tone";
 import RangeBoundary from './RangeBoundary';
-import { Box, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material';
+import { Box, Card, Divider, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material';
 
 
 import './RangeOfSong.scss';
@@ -78,75 +78,50 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
   };
 
   return (
-    <section id="parentContainer">
-      <h2>
+    // <section id="parentContainer">
+    <Card
+      variant="outlined"
+    // sx={{ maxWidth: 360 }}
+    >
+      <Box sx={{ p: 2 }}>
+        <h2>
 
-      Range Of Song - MIDI Upload
-      </h2>
-      <br />
-      index: {index}
-      <br /><br />
-      STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
-      <br /><br />
+          Range Of Song - MIDI Upload
+        </h2>
+        {/* index: {index} */}
+      </Box>
 
-{/* 
-      <div className="row">
-        <div className="column">
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Lowest Key of Song 🎼</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={boundaryLow}
-                label="Age"
-                onChange={(e) => handleChangeTo_arrayRangeOfSongs(e, index, true)}
-              >
-                {renderMenuItems()}
-              </Select>
-            </FormControl>
-          </Box>
+      <Divider />
+
+      <Box sx={{ p: 2 }}>
+
+        TODO show lowest and highest notes
+
+        <div
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={handleDrop}
+          className="p-4 border-2 border-dashed border-gray-300 rounded-lg text-center"
+        >
+          <input type="file" accept=".mid,.midi" onChange={handleFileChange} className="mb-4" />
+          <p>Click the button above to select a MIDI file from your computer, or drag & drop a MIDI file onto this area.</p>
+          {highestNote && lowestNote && (
+            <div className="mt-4">
+              <p>Lowest Note: {lowestNote}</p>
+              <p>Highest Note: {highestNote}</p>
+            </div>
+          )}
         </div>
-        <div className="column">
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Highest Key of Song 🎼</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={boundaryHigh}
-                label="Age"
-                onChange={(e) => handleChangeTo_arrayRangeOfSongs(e, index, false)}
-              >
-                {renderMenuItems()}
-              </Select>
-            </FormControl>
-          </Box>
-        </div>
-      </div> */}
+
+      </Box>
 
 
-      Upload a MIDI file.
-      <br /><br />
+      <Divider />
 
 
+      <Box sx={{ p: 2 }}>
 
-      <div
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={handleDrop}
-        className="p-4 border-2 border-dashed border-gray-300 rounded-lg text-center"
-      >
-        <input type="file" accept=".mid" onChange={handleFileChange} className="mb-4" />
-        <p>Drag & drop a MIDI file here or select one.</p>
-        {highestNote && lowestNote && (
-          <div className="mt-4">
-            <p>Lowest Note: {lowestNote}</p>
-            <p>Highest Note: {highestNote}</p>
-          </div>
-        )}
-      </div>
-
-
-    </section>
+        STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
+      </Box>
+    </Card>
   );
 }
