@@ -206,6 +206,7 @@ function App() {
           + ADD ANOTHER NOTE RANGE
 </h3>
           {/* <br /> */}
+          {/* BOOKMARK  */}
           <Button variant="contained" size="large" startIcon={<TouchAppIcon />}>MANUAL ENTRY</Button>
           &nbsp;
           or

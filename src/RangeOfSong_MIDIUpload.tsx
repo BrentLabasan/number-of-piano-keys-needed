@@ -34,10 +34,13 @@ type RangeOfSongProps = {
 
 export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pianoBoundaryLow, pianoBoundaryHigh, handleChangeTo_arrayRangeOfSongs }: RangeOfSongProps) {
 
-  const doesSongFitItPianoRange = pianoBoundaryLow <= boundaryLow && boundaryHigh >= pianoBoundaryHigh;
-
+  // const [highestNote, setHighestNote] = useState<string | null>(null);
+  // const [lowestNote, setLowestNote] = useState<string | null>(null);
+  // const doesSongFitItPianoRange = pianoBoundaryLow <= boundaryLow && boundaryHigh >= pianoBoundaryHigh;
   const [highestNote, setHighestNote] = useState<string | null>(null);
   const [lowestNote, setLowestNote] = useState<string | null>(null);
+  const doesSongFitItPianoRange = (lowestNote !== null && highestNote !== null) &&
+  (pianoBoundaryLow <= lowestNote && highestNote <= pianoBoundaryHigh);
 
   const handleFileUpload = async (file: File) => {
     if (!file) return;
@@ -59,8 +62,14 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
       // setLowestNote(minNote !== Infinity ? Midi.midiToNoteName(minNote) : null);
       // setHighestNote(maxNote !== -Infinity ? Midi.midiToNoteName(maxNote) : null);
-      setLowestNote(minNote !== Infinity ? Tone.Frequency(minNote, "midi").toNote() : null);
-      setHighestNote(maxNote !== -Infinity ? Tone.Frequency(maxNote, "midi").toNote() : null);
+
+      // WORKS format is e.g. D1 G#7
+      // setLowestNote(minNote !== Infinity ? Tone.Frequency(minNote, "midi").toNote() : null);
+      // setHighestNote(maxNote !== -Infinity ? Tone.Frequency(maxNote, "midi").toNote() : null);
+      setLowestNote("" + minNote);
+      setHighestNote("" + maxNote);
+      debugger;
+
     };
   };
 
@@ -95,22 +104,25 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
       <Box sx={{ p: 2 }}>
 
-        TODO show lowest and highest notes
-
         <div
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
           className="p-4 border-2 border-dashed border-gray-300 rounded-lg text-center"
         >
           <input type="file" accept=".mid,.midi" onChange={handleFileChange} className="mb-4" />
+          {/* TODO Currently if you upload by OS,the filename will be displayed by right of button.  Then if you upload by drag n drop, the filename will stay the same. */}
           <p>Click the button above to select a MIDI file from your computer, or drag & drop a MIDI file onto this area.</p>
           {highestNote && lowestNote && (
             <div className="mt-4">
-              <p>Lowest Note: {lowestNote}</p>
-              <p>Highest Note: {highestNote}</p>
+                      {/* BOOKMARK TODO make the lowest and highest look good */}
+
+              <p>Lowest Note: {lowestNote} | Highest Note: {highestNote}</p>
             </div>
           )}
         </div>
+
+        TODO put a text input section here, for notes
+
 
       </Box>
 
