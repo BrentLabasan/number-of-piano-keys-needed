@@ -33,7 +33,7 @@ type RangeOfSongProps = {
 
 export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pianoBoundaryLow, pianoBoundaryHigh, handleChangeTo_arrayRangeOfSongs }: RangeOfSongProps) {
 
-  const doesSongFitItPianoRange = pianoBoundaryLow <= boundaryLow && boundaryHigh <= pianoBoundaryHigh;
+  const doesSongFitItPianoRange = parseInt(pianoBoundaryLow) <= parseInt(boundaryLow) && parseInt(boundaryHigh) <= parseInt(pianoBoundaryHigh);
 
   const [highestNote, setHighestNote] = useState<string | null>(null);
   const [lowestNote, setLowestNote] = useState<string | null>(null);

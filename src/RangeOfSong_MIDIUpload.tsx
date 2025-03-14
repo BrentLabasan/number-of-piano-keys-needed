@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { Midi } from '@tonejs/midi';
 import * as Tone from "tone";
 import RangeBoundary from './RangeBoundary';
-import { Box, Card, Divider, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material';
+import { Box, Card, Chip, Divider, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material';
+
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 import './RangeOfSong.scss';
@@ -40,7 +43,10 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
   const [highestNote, setHighestNote] = useState<string | null>(null);
   const [lowestNote, setLowestNote] = useState<string | null>(null);
   const doesSongFitItPianoRange = (lowestNote !== null && highestNote !== null) &&
-  (pianoBoundaryLow <= lowestNote && highestNote <= pianoBoundaryHigh);
+    (parseInt(pianoBoundaryLow) <= parseInt(lowestNote) && parseInt(highestNote) <= parseInt(pianoBoundaryHigh));
+debugger
+  const [high, setHigh] = useState<string | null>(null);
+  const [low, setLow] = useState<string | null>(null);
 
   const handleFileUpload = async (file: File) => {
     if (!file) return;
@@ -68,6 +74,8 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
       // setHighestNote(maxNote !== -Infinity ? Tone.Frequency(maxNote, "midi").toNote() : null);
       setLowestNote("" + minNote);
       setHighestNote("" + maxNote);
+      setLow(minNote !== Infinity ? Tone.Frequency(minNote, "midi").toNote() : null);
+      setHigh(maxNote !== -Infinity ? Tone.Frequency(maxNote, "midi").toNote() : null);
       debugger;
 
     };
@@ -114,26 +122,26 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
           <p>Click the button above to select a MIDI file from your computer, or drag & drop a MIDI file onto this area.</p>
           {highestNote && lowestNote && (
             <div className="mt-4">
-                      {/* BOOKMARK TODO make the lowest and highest look good */}
+              {/* BOOKMARK TODO make the lowest and highest look good */}
 
               <p>Lowest Note: {lowestNote} | Highest Note: {highestNote}</p>
             </div>
           )}
         </div>
 
-        TODO put a text input section here, for notes
+        {lowestNote && highestNote && <span><Chip icon={<ArrowBackIcon />} label={low} />
+        <Chip icon={<ArrowForwardIcon />} label={high} /></span>}
 
 
       </Box>
 
 
-      <Divider />
+      {lowestNote && highestNote && <Divider />}
 
 
-      <Box sx={{ p: 2 }}>
-
+      {lowestNote && highestNote &&<Box sx={{ p: 2 }}>
         STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
-      </Box>
+      </Box>}
     </Card>
   );
 }

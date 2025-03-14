@@ -85,20 +85,22 @@ function renderWhitePianoKeys() {
   });
 }
 
+const defaultUserSelect = {
+  type: 'userSelect',
+  low: '21',
+  high: '127',
+};
 
+const defaultMIDIUpload = {
+  type: 'midiUpload',
+  low: '1',
+  high: '1',
+};
 
 
 const arrRangeOfSongComponents_initial = [
-  {
-    type: 'userSelect',
-    low: '21',
-    high: '127',
-  },
-  {
-    type: 'midiUpload',
-    low: '1',
-    high: '1',
-  }
+  defaultUserSelect,
+  defaultMIDIUpload
 ];
 
 
@@ -165,7 +167,18 @@ function App() {
   }
 
 
-
+  function addManualEntry() {
+    // alert();
+    const clone = structuredClone(arrayRangeOfSongs_state);
+    clone.push(defaultUserSelect);
+    modifyArrayRangeOfSongs(clone);
+  }
+  function addMIDIUpload() {
+    // alert();
+    const clone = structuredClone(arrayRangeOfSongs_state);
+    clone.push(defaultMIDIUpload);
+    modifyArrayRangeOfSongs(clone);
+  }
 
 
 
@@ -207,11 +220,11 @@ function App() {
 </h3>
           {/* <br /> */}
           {/* BOOKMARK  */}
-          <Button variant="contained" size="large" startIcon={<TouchAppIcon />}>MANUAL ENTRY</Button>
+          <Button onClick={addManualEntry} variant="contained" size="large" startIcon={<TouchAppIcon />}>MANUAL ENTRY</Button>
           &nbsp;
           or
           &nbsp;
-          <Button variant="contained" size="large" endIcon={<UploadFileIcon />}>MIDI UPLOAD</Button>
+          <Button onClick={addMIDIUpload} variant="contained" size="large" endIcon={<UploadFileIcon />}>MIDI UPLOAD</Button>
         </div>
 
       </div>
