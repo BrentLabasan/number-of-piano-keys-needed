@@ -71,6 +71,8 @@ for (let i = 21; i <= 108; i++) {
   });
 }
 
+// TODO mark middle C
+
 console.log(midiNotes.toString());
 
 
@@ -136,33 +138,33 @@ function App() {
     return arrayRangeOfSongs_state.map((obj_rangeOfSong, i) => {
       if (obj_rangeOfSong.type === 'userSelect') {
         return <RangeOfSong_ManualEntry
-        key={i}
-        index={i}
+          key={i}
+          index={i}
 
-        pianoBoundaryLow={pianoBoundaryLow}
-        pianoBoundaryHigh={pianoBboundaryHigh}
+          pianoBoundaryLow={pianoBoundaryLow}
+          pianoBoundaryHigh={pianoBboundaryHigh}
 
-        boundaryLow={obj_rangeOfSong.low}
-        boundaryHigh={obj_rangeOfSong.high}
-        handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}
-      // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
-      />;
+          boundaryLow={obj_rangeOfSong.low}
+          boundaryHigh={obj_rangeOfSong.high}
+          handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}
+        // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
+        />;
       } else {
         return <RangeOfSong_MIDIUpload
-        key={i}
-        index={i}
+          key={i}
+          index={i}
 
-        pianoBoundaryLow={pianoBoundaryLow}
-        pianoBoundaryHigh={pianoBboundaryHigh}
+          pianoBoundaryLow={pianoBoundaryLow}
+          pianoBoundaryHigh={pianoBboundaryHigh}
 
-        boundaryLow={obj_rangeOfSong.low}
-        boundaryHigh={obj_rangeOfSong.high}
-        handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}
-      // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
+          boundaryLow={obj_rangeOfSong.low}
+          boundaryHigh={obj_rangeOfSong.high}
+          handleChangeTo_arrayRangeOfSongs={handleChangeTo_arrayRangeOfSongs}
+        // handleSongBoundaryChangeHigh={handleChangeTo_arrayRangeOfSongs}
         />;
-        
+
       }
-     
+
     });
   }
 
@@ -184,6 +186,10 @@ function App() {
 
   return (
     <div className="App">
+      <h1>
+        Can My Song Be Played On This Size Piano?
+        {/* <div>made by Fabricator</div> */}
+      </h1>
       <div id="containerBlackKeys">
         <span id="span1">
 
@@ -213,13 +219,11 @@ function App() {
 
         <div id="rightSide">
           {renderAll_rangeOfSongComponents()}
-<br />
-<h3>
+          <br />
+          <h3>
 
-          + ADD ANOTHER NOTE RANGE
-</h3>
-          {/* <br /> */}
-          {/* BOOKMARK  */}
+            + ADD ANOTHER NOTE RANGE
+          </h3>
           <Button onClick={addManualEntry} variant="contained" size="large" startIcon={<TouchAppIcon />}>MANUAL ENTRY</Button>
           &nbsp;
           or

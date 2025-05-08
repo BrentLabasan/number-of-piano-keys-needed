@@ -143,7 +143,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
 
       <Box sx={{ p: 2 }}>
-
+{/* TODO put checkmark or x icon */}
         STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
 
       </Box>
