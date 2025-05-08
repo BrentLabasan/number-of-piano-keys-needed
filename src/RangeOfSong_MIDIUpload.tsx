@@ -108,6 +108,8 @@ debugger
         {/* index: {index} */}
       </Box>
 
+{/* still doesn't extend all the way to right, even if content is simplified so that Boxs are removed */}
+{/* even if I replace with code example from documentation, still doesn't work */}
       <Divider />
 
       <Box sx={{ p: 2 }}>
