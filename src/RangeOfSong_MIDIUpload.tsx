@@ -103,14 +103,16 @@ debugger
       <Box sx={{ p: 2 }}>
         <h2>
 
-          Range Of Song - MIDI Upload
+          MIDI Upload
         </h2>
         {/* index: {index} */}
       </Box>
 
 {/* still doesn't extend all the way to right, even if content is simplified so that Boxs are removed */}
 {/* even if I replace with code example from documentation, still doesn't work */}
-      <Divider />
+      <Divider
+      variant="middle"
+      />
 
       <Box sx={{ p: 2 }}>
 

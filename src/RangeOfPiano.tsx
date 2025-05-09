@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import RangeBoundary from './RangeBoundary';
-import { Button, SelectChangeEvent } from '@mui/material';
+import { Button, Divider, Grid2, SelectChangeEvent } from '@mui/material';
 import './RangeOfPiano.scss';
 
 type RangeOfPianoProps = {
@@ -22,6 +22,12 @@ export default function RangeOfPiano({ boundaryLow, boundaryHigh, handlePianoBou
                 Range Of Piano
             </h2>
 
+            <Divider>
+                Select Range
+            </Divider>
+
+            <br />
+
             <RangeBoundary rangeBoundaryType={'piano'}
                 boundaryLow={boundaryLow}
                 boundaryHigh={boundaryHigh}
@@ -29,16 +35,30 @@ export default function RangeOfPiano({ boundaryLow, boundaryHigh, handlePianoBou
                 handleChangeHigh={handlePianoBoundaryChangeHigh}
             />
 
-            <div>
-                <h3>
-                    bottom note
-                </h3>
-                <Button variant="outlined">C1</Button>
-                <Button variant="outlined">C2</Button>
-                <Button variant="outlined">C3</Button>
-                <Button variant="outlined">C4</Button>
-                <Button variant="outlined">C5</Button>
-            </div>
+            <br />
+
+            <Divider>
+                Shortcuts
+            </Divider>
+
+            <Grid2 container spacing={2}>
+                <Grid2 size={6}>
+                    <h3>
+                        bottom key
+                    </h3>
+                    <Button variant="outlined">C1</Button>
+                    <Button variant="outlined">C2</Button>
+                    <Button variant="outlined">C3</Button>
+                </Grid2>
+                <Grid2 size={6}>
+                    <h3>
+                        top key
+                    </h3>
+                    <Button variant="outlined">C4</Button>
+                    <Button variant="outlined">C5</Button>
+                </Grid2>
+            </Grid2>
+
 
             <div>
                 <h3>

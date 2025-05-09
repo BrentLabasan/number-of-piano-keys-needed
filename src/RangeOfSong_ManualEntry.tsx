@@ -85,7 +85,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
       <Box sx={{ p: 2 }}>
         <h2>
 
-          Range Of Song - User Select
+        MANUAL ENTRY
         </h2>
         {/* index: {index} */}
       </Box>
@@ -96,6 +96,8 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
       {/* TODO why does this cause an error? */}
       {/* <Divider variant="middle /> */}
 
+
+{/* TODO */}
 
       <Box sx={{ p: 2 }}>
 
@@ -139,12 +141,15 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
       </Box>
 
 
-      <Divider />
+      <Divider>
+      STATUS
+      </Divider>
+
 
 
       <Box sx={{ p: 2 }}>
 {/* TODO put checkmark or x icon */}
-        STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
+        Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
 
       </Box>
     </Card>
