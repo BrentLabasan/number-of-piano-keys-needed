@@ -19,6 +19,7 @@ import { Button } from '@mui/material';
 import TouchAppIcon from '@mui/icons-material/TouchApp';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 //  TODOs
+// when you click on key, you hear the sound of it
 // take pic of configuration
 
 //  const arrNoteName_letter = new Array(7);
@@ -187,7 +188,9 @@ function App() {
   return (
     <div className="App">
       <h1>
-        Can My Song Be Played On This Size Piano?
+        Does My Piano Have Enough Keys For This Song?
+        {/* Can My Song Be Played On This Size Piano? */}
+
         {/* <div>made by Fabricator</div> */}
       </h1>
       <div id="containerBlackKeys">

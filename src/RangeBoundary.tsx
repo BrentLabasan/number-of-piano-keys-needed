@@ -13,12 +13,14 @@ import './RangeBoundary.scss'
 
 export function renderMenuItems() {
   return MIDInotes.map((note, i) => {
-    return <MenuItem value={note.midiNoteNumber} key={note.midiNoteNumber}>{getMenuItemValue(i)}</MenuItem>
+    return <MenuItem value={note.midiNoteNumber} key={note.midiNoteNumber}>{getMenuItemValue(i, note.midiNoteNumber)}</MenuItem>
   });
 }
 
-function getMenuItemValue(i: number) {
-  return MIDInotes[i].sharp;
+function getMenuItemValue(i: number, midiNoteNumber: number) {
+  let text =  MIDInotes[i].sharp;
+  if (midiNoteNumber === 60) text += " (Middle C)" 
+  return text;
 }
 
 // enum Blah {
@@ -64,7 +66,7 @@ export default function RangeBoundary({ rangeBoundaryType, boundaryLow, boundary
         <div className="column">
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Select Lowest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
+              <InputLabel id="demo-simple-select-label">1Select Lowest Key of {rangeBoundaryType === 'piano' ? 'Piano 🎹' : 'Song 🎼'}</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"

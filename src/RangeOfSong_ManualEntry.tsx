@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Midi } from '@tonejs/midi';
 import * as Tone from "tone";
 import RangeBoundary from './RangeBoundary';
-import { Box, Card, Divider, FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material';
+import { Box, Card, Divider, FormControl, InputLabel, Select, SelectChangeEvent, TextField } from '@mui/material';
 import './RangeOfSong_ManualEntry.scss';
 
 import './RangeOfSong.scss';
@@ -85,19 +85,21 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
       <Box sx={{ p: 2 }}>
         <h2>
 
-        MANUAL ENTRY
+          MANUAL ENTRY
         </h2>
         {/* index: {index} */}
       </Box>
 
       {/* TODO Why doesn't this divider extend all the way to the right? */}
 
-      <Divider />
+      <Divider>
+        Select Range
+      </Divider>
       {/* TODO why does this cause an error? */}
       {/* <Divider variant="middle /> */}
 
 
-{/* TODO */}
+      {/* TODO */}
 
       <Box sx={{ p: 2 }}>
 
@@ -136,19 +138,33 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
           </div>
         </div>
 
-        TODO put a text input section here, for notes
+        <Divider>
+          Notepad
+        </Divider>
+
+        <br />
+
+        <TextField
+          id="outlined-multiline-static"
+          label="Write any notes here."
+          multiline
+          rows={4}
+          // defaultValue="Default Value"
+          fullWidth
+        // placeholder="Write any notes here."
+        />
 
       </Box>
 
 
       <Divider>
-      STATUS
+        STATUS
       </Divider>
 
 
 
       <Box sx={{ p: 2 }}>
-{/* TODO put checkmark or x icon */}
+        {/* TODO put checkmark or x icon */}
         Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
 
       </Box>

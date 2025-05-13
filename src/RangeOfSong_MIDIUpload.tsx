@@ -44,7 +44,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
   const [lowestNote, setLowestNote] = useState<string | null>(null);
   const doesSongFitItPianoRange = (lowestNote !== null && highestNote !== null) &&
     (parseInt(pianoBoundaryLow) <= parseInt(lowestNote) && parseInt(highestNote) <= parseInt(pianoBoundaryHigh));
-debugger
+  debugger
   const [high, setHigh] = useState<string | null>(null);
   const [low, setLow] = useState<string | null>(null);
 
@@ -108,11 +108,13 @@ debugger
         {/* index: {index} */}
       </Box>
 
-{/* still doesn't extend all the way to right, even if content is simplified so that Boxs are removed */}
-{/* even if I replace with code example from documentation, still doesn't work */}
+      {/* still doesn't extend all the way to right, even if content is simplified so that Boxs are removed */}
+      {/* even if I replace with code example from documentation, still doesn't work */}
       <Divider
-      variant="middle"
-      />
+        variant="middle"
+      >
+        File Selector / File Upload Area
+      </Divider>
 
       <Box sx={{ p: 2 }}>
 
@@ -134,16 +136,25 @@ debugger
         </div>
 
         {lowestNote && highestNote && <span><Chip icon={<ArrowBackIcon />} label={low} />
-        <Chip icon={<ArrowForwardIcon />} label={high} /></span>}
+          <Chip icon={<ArrowForwardIcon />} label={high} /></span>}
 
 
       </Box>
 
 
-      {lowestNote && highestNote && <Divider />}
+      {/* {lowestNote && highestNote && <Divider />} */}
 
+      <Divider
+        variant="middle"
+      >
+        STATUS
+      </Divider>
 
-      {lowestNote && highestNote &&<Box sx={{ p: 2 }}>
+      {!lowestNote && <Box sx={{ p: 2 }}>
+        Upload or drag & drop a MIDI file to see if it can be played on the piano.
+      </Box>}
+
+      {lowestNote && highestNote && <Box sx={{ p: 2 }}>
         STATUS: Song {doesSongFitItPianoRange ? "fits" : "does not fit"} into the specified range.
       </Box>}
     </Card>
