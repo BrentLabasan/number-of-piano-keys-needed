@@ -13,9 +13,16 @@ type RangeOfPianoProps = {
     handlePianoBoundaryChangeLow: (event: SelectChangeEvent) => void;
     // handlePianoBoundaryChangeHigh: Function;
     handlePianoBoundaryChangeHigh: (event: SelectChangeEvent) => void;
+    handlePianoBoundaryChangeLow_fromButton: Function;
+    handlePianoBoundaryChangeHigh_fromButton: Function;
 }
 
-export default function RangeOfPiano({ boundaryLow, boundaryHigh, handlePianoBoundaryChangeLow, handlePianoBoundaryChangeHigh }: RangeOfPianoProps) {
+export default function RangeOfPiano({ boundaryLow, boundaryHigh, handlePianoBoundaryChangeLow, handlePianoBoundaryChangeHigh, handlePianoBoundaryChangeLow_fromButton, handlePianoBoundaryChangeHigh_fromButton }: RangeOfPianoProps) {
+    
+    function handleBottomKeyChange(bottomKey: string) {
+        // handlePianoBoundaryChangeLow(bottomKey);
+    }
+    
     return (
         <section className="parentContainer_rangeOfPiano">
             <h2>
@@ -37,6 +44,11 @@ export default function RangeOfPiano({ boundaryLow, boundaryHigh, handlePianoBou
 
             <br />
 
+            Number of Keys: {parseInt(boundaryHigh) - parseInt(boundaryLow) + 1}
+
+            <br />
+            <br />
+
             <Divider>
                 Shortcuts
             </Divider>
@@ -46,21 +58,27 @@ export default function RangeOfPiano({ boundaryLow, boundaryHigh, handlePianoBou
                     <h3>
                         bottom key
                     </h3>
-                    <Button variant="outlined">C1</Button>
-                    <Button variant="outlined">C2</Button>
-                    <Button variant="outlined">C3</Button>
+                    {/* TODO do a CSS transition on the STATUSes in the right side, as a visual affordance */}
+                    <Button variant="outlined" onClick={() => handlePianoBoundaryChangeLow_fromButton('21')}>A0</Button>
+                    <Button variant="outlined" onClick={() => handlePianoBoundaryChangeLow_fromButton('24')}>C1</Button>
+                    <Button variant="outlined" onClick={() => handlePianoBoundaryChangeLow_fromButton('36')}>C2</Button>
                 </Grid2>
+
+                {/* // BOOKMARK continue wiring this up */}
                 <Grid2 size={6}>
                     <h3>
                         top key
                     </h3>
-                    <Button variant="outlined">C4</Button>
-                    <Button variant="outlined">C5</Button>
+                    <Button variant="outlined" onClick={() => handlePianoBoundaryChangeHigh_fromButton('72')}>C5</Button>
+                    <Button variant="outlined" onClick={() => handlePianoBoundaryChangeHigh_fromButton('84')}>C6</Button>
+                    <Button variant="outlined" onClick={() => handlePianoBoundaryChangeHigh_fromButton('96')}>C7</Button>
                 </Grid2>
             </Grid2>
 
 
-            <div>
+            {/* //TODO is this idea worth doing? */}
+            {/* <div>
+                TODO put tooltip here explaining that it adds from the bottom key 
                 <h3>
                     keyboard length
                 </h3>
@@ -69,7 +87,7 @@ export default function RangeOfPiano({ boundaryLow, boundaryHigh, handlePianoBou
                 <Button variant="outlined">73</Button>
                 <Button variant="outlined">76</Button>
                 <Button variant="outlined">88</Button>
-            </div>
+            </div> */}
 
 
         </section>

@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { Midi } from '@tonejs/midi';
 import * as Tone from "tone";
 import RangeBoundary from './RangeBoundary';
-import { Box, Card, Divider, FormControl, InputLabel, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { Autocomplete, Box, Card, Divider, FormControl, InputLabel, Select, SelectChangeEvent, TextField } from '@mui/material';
 import './RangeOfSong_ManualEntry.scss';
 
 import './RangeOfSong.scss';
 import './RangeBoundary.scss'
 
 import { renderMenuItems } from './RangeBoundary';
+
+import SongChoices from './SongChoices';
 
 type RangeOfSongProps = {
   key: number;
@@ -153,14 +155,56 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
           fullWidth
         // placeholder="Write any notes here."
         />
+        <br />
+        <br />
+
+        <Divider>
+        Choose A Song
+        </Divider>
+
+
+
+        <div className="row">
+          <div className="column">
+            <Box sx={{ minWidth: 120 }}>
+              {/* BOOKMARK */}
+              {/* Searchable pre-filled dropdown list of song compositions that can be used to fill in the Manual Entry widget */}
+              <Autocomplete
+                disablePortal
+                options={SongChoices}
+                sx={{ width: 500 }}
+                renderInput={(params) => <TextField {...params} label="Choose A Song" />}
+              />
+            </Box>
+          </div>
+          <div className="column">
+            <Box sx={{ minWidth: 120 }}>
+              Preview
+              <br />
+              <br />
+              Download/Buy Link
+            </Box>
+          </div>
+        </div>
+
+
+
+
+
+        <br />
 
       </Box>
+
+
 
 
       <Divider>
         STATUS
       </Divider>
 
+      <br />
+
+      Number of Keys Needed: {parseInt(boundaryHigh) - parseInt(boundaryLow) + 1}
 
 
       <Box sx={{ p: 2 }}>

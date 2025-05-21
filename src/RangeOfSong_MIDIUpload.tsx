@@ -128,7 +128,6 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
           <p>Click the button above to select a MIDI file from your computer, or drag & drop a MIDI file onto this area.</p>
           {highestNote && lowestNote && (
             <div className="mt-4">
-              {/* BOOKMARK TODO make the lowest and highest look good */}
 
               <p>Lowest Note: {lowestNote} | Highest Note: {highestNote}</p>
             </div>

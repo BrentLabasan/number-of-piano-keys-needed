@@ -3,10 +3,6 @@ import note from './INote';
 
 import Button from '@mui/material/Button';
 
-// BOOKMARK draw white and black keys
-// space out black keys
-// denote middle C
-
 // export default function PianoKey({ midiNumber, noteName }: note) {
 
 export default function PianoKey({ midi, frequency, sharp, flat,  isBlackKey}: note) {

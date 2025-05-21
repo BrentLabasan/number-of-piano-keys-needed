@@ -110,15 +110,31 @@ const arrRangeOfSongComponents_initial = [
 function App() {
 
   const [pianoBoundaryLow, setPianoBoundaryLow] = React.useState('21');
-  const [pianoBboundaryHigh, setPianoBoundaryHigh] = React.useState('127');
+  const [pianoBoundaryHigh, setPianoBoundaryHigh] = React.useState('127');
 
   const handlePianoBoundaryChangeLow = (event: SelectChangeEvent) => {
+    // alert(event.target.value);
     setPianoBoundaryLow(event.target.value as string);
   };
 
   const handlePianoBoundaryChangeHigh = (event: SelectChangeEvent) => {
     setPianoBoundaryHigh(event.target.value as string);
   };
+
+
+  
+  const handleBoundaryChangeLow_fromButton = (key: string) => {
+    // alert(key)
+    setPianoBoundaryLow(key);
+  };
+  const handleBoundaryChangeHigh_fromButton = (key: string) => {
+    setPianoBoundaryHigh(key);
+  };
+
+
+
+
+
 
   const [arrayRangeOfSongs_state, modifyArrayRangeOfSongs] = useState(arrRangeOfSongComponents_initial);
 
@@ -143,7 +159,7 @@ function App() {
           index={i}
 
           pianoBoundaryLow={pianoBoundaryLow}
-          pianoBoundaryHigh={pianoBboundaryHigh}
+          pianoBoundaryHigh={pianoBoundaryHigh}
 
           boundaryLow={obj_rangeOfSong.low}
           boundaryHigh={obj_rangeOfSong.high}
@@ -156,7 +172,7 @@ function App() {
           index={i}
 
           pianoBoundaryLow={pianoBoundaryLow}
-          pianoBoundaryHigh={pianoBboundaryHigh}
+          pianoBoundaryHigh={pianoBoundaryHigh}
 
           boundaryLow={obj_rangeOfSong.low}
           boundaryHigh={obj_rangeOfSong.high}
@@ -193,7 +209,11 @@ function App() {
 
         {/* <div>made by Fabricator</div> */}
       </h1>
-      <div id="containerBlackKeys">
+
+      <p>A Fun Little Project by Fabricator</p>
+
+      {/* PIANO ROLL */}
+      {/* <div id="containerBlackKeys">
         <span id="span1">
 
           {renderBlackPianoKeys()}
@@ -201,9 +221,11 @@ function App() {
       </div>
       <div id="containerWhiteKeys">
         {renderWhitePianoKeys()}
-      </div>
+      </div> */}
+
       <br />
-      <br /><br />
+      <br />
+      <br />
 
 
       {/* TODO 2 columns */}
@@ -213,9 +235,11 @@ function App() {
         <div id="leftSide">
           <RangeOfPiano
             boundaryLow={pianoBoundaryLow}
-            boundaryHigh={pianoBboundaryHigh}
+            boundaryHigh={pianoBoundaryHigh}
             handlePianoBoundaryChangeLow={handlePianoBoundaryChangeLow}
             handlePianoBoundaryChangeHigh={handlePianoBoundaryChangeHigh}
+            handlePianoBoundaryChangeLow_fromButton={handleBoundaryChangeLow_fromButton}
+            handlePianoBoundaryChangeHigh_fromButton={handleBoundaryChangeHigh_fromButton}
           />
 
         </div>
