@@ -35,6 +35,12 @@ type RangeOfSongProps = {
 
 export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pianoBoundaryLow, pianoBoundaryHigh, handleChangeTo_arrayRangeOfSongs }: RangeOfSongProps) {
 
+  const [value, setValue] = React.useState<string | null>(SongChoices[0].label);
+  const [inputValue, setInputValue] = React.useState('');
+
+  // const [mediaUrl, setMediaUrl] = React.useState('');
+  const [mediaUrl, setMediaUrl] = React.useState(SongChoices[0].url);
+
   const doesSongFitItPianoRange = parseInt(pianoBoundaryLow) <= parseInt(boundaryLow) && parseInt(boundaryHigh) <= parseInt(pianoBoundaryHigh);
 
   const [highestNote, setHighestNote] = useState<string | null>(null);
@@ -77,6 +83,20 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
       handleFileUpload(event.dataTransfer.files[0]);
     }
   };
+
+  const baz = ['ABBA - Dancing Queen - Paul W. Wells', 'Whitney Houston - I Wanna Dance With Somebody - Paul W. Wells'];
+
+  const foo = {
+    'Whitney Houston - I Wanna Dance With Somebody - Paul W. Wells': {
+      type: 'youtube',
+      url: 'https://www.youtube.com/watch?v=p4GF_0GdCJQ'
+    },
+    'ABBA - Dancing Queen - Paul W. Wells': {
+      type: 'youtube',
+      url: 'https://www.youtube.com/watch?v=OGRsryg7Ro0'
+    },
+  }
+
 
   return (
     // <section id="parentContainer">
@@ -159,8 +179,11 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
         <br />
 
         <Divider>
-        Choose A Song
+          Choose A Song
         </Divider>
+
+        <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
+        <div>{`inputValue: '${inputValue}'`}</div>
 
 
 
@@ -168,12 +191,25 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
           <div className="column">
             <Box sx={{ minWidth: 120 }}>
               {/* BOOKMARK */}
-              {/* Searchable pre-filled dropdown list of song compositions that can be used to fill in the Manual Entry widget */}
+              {/* Searchable pre-filled dropdown list of song compositions that can be used to fill in the Manual Entry widget https://mui.com/material-ui/react-autocomplete/ */}
               <Autocomplete
                 disablePortal
-                options={SongChoices}
+
+                // options={SongChoices}
+                options={baz}
+
                 sx={{ width: 500 }}
                 renderInput={(params) => <TextField {...params} label="Choose A Song" />}
+
+                value={value}
+                onChange={(event: any, newValue: string | null, details: any) => {
+                  setValue(newValue);
+                  setMediaUrl(SongChoices[event.target.value].url);
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
               />
             </Box>
           </div>
@@ -181,6 +217,11 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
             <Box sx={{ minWidth: 120 }}>
               Preview
               <br />
+
+              {mediaUrl && <iframe width="420" height="315"
+                src={mediaUrl}>
+              </iframe>}
+
               <br />
               Download/Buy Link
             </Box>

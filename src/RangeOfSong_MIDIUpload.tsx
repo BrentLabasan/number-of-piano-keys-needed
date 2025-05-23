@@ -44,7 +44,7 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
   const [lowestNote, setLowestNote] = useState<string | null>(null);
   const doesSongFitItPianoRange = (lowestNote !== null && highestNote !== null) &&
     (parseInt(pianoBoundaryLow) <= parseInt(lowestNote) && parseInt(highestNote) <= parseInt(pianoBoundaryHigh));
-  debugger
+  // debugger
   const [high, setHigh] = useState<string | null>(null);
   const [low, setLow] = useState<string | null>(null);
 
