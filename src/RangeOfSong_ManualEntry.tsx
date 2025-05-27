@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Midi } from '@tonejs/midi';
 import * as Tone from "tone";
 import RangeBoundary from './RangeBoundary';
-import { Autocomplete, Box, Card, Divider, FormControl, InputLabel, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { Autocomplete, Box, Button, Card, Divider, FormControl, FormControlLabel, FormGroup, InputLabel, Select, SelectChangeEvent, Stack, Switch, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import './RangeOfSong_ManualEntry.scss';
 
 import './RangeOfSong.scss';
@@ -11,6 +11,9 @@ import './RangeBoundary.scss'
 import { renderMenuItems } from './RangeBoundary';
 
 import SongChoices from './SongChoices';
+
+import EditNote from '@mui/icons-material/EditNote';
+import AudioFile from '@mui/icons-material/AudioFile';
 
 type RangeOfSongProps = {
   key: number;
@@ -34,6 +37,14 @@ type RangeOfSongProps = {
 
 
 export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pianoBoundaryLow, pianoBoundaryHigh, handleChangeTo_arrayRangeOfSongs }: RangeOfSongProps) {
+  const [alignment, setAlignment] = React.useState('web');
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string,
+  ) => {
+    setAlignment(newAlignment);
+  };
 
   const [value, setValue] = React.useState<string | null>(SongChoices[0].label);
   const [inputValue, setInputValue] = React.useState('');
@@ -45,6 +56,16 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
 
   const [highestNote, setHighestNote] = useState<string | null>(null);
   const [lowestNote, setLowestNote] = useState<string | null>(null);
+
+  const [isNotepadShowing, setIsNotepadShowing] = useState(false);
+  const [isSongChooserShowing, setIsSongChooserShowing] = useState(false);
+
+  const handleChange_isNotepadShowing = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsNotepadShowing(event.target.checked);
+  };
+  const handleChange_isSongChooserShowing = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSongChooserShowing(event.target.checked);
+  };
 
   const handleFileUpload = async (file: File) => {
     if (!file) return;
@@ -160,6 +181,36 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
           </div>
         </div>
 
+        TOOLS
+        &nbsp;
+        &nbsp;
+        &nbsp;
+
+        {/* BOOKMARK */}
+        <FormControlLabel control={<Switch
+          checked={isNotepadShowing}
+          onChange={handleChange_isNotepadShowing}
+          inputProps={{ 'aria-label': 'controlled' }}
+        />} label="Notepad" labelPlacement="bottom" />
+        {/* <EditNote /> */}
+        <FormControlLabel control={<Switch
+          checked={isSongChooserShowing}
+          onChange={handleChange_isSongChooserShowing}
+          inputProps={{ 'aria-label': 'controlled' }}
+        />} label="Song Chooser" labelPlacement="bottom" />
+        {/* <AudioFile /> */}
+        {/* 
+        <Stack direction="row" spacing={2}>
+          <Button variant="outlined" startIcon={<EditNote />}>
+            Notepad
+          </Button>
+          <Button variant="contained" endIcon={<AudioFile />}>
+            Sheet Music
+          </Button>
+        </Stack> */}
+        <br />
+        <br />
+        
         <Divider>
           Notepad
         </Divider>
