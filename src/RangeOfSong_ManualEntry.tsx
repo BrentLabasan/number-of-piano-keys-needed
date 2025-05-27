@@ -210,83 +210,81 @@ export default function RangeOfSong({ key, index, boundaryLow, boundaryHigh, pia
         </Stack> */}
         <br />
         <br />
-        
-        <Divider>
+
+        {isNotepadShowing && (<div><Divider>
           Notepad
         </Divider>
 
-        <br />
+          <br />
 
-        <TextField
-          id="outlined-multiline-static"
-          label="Write any notes here."
-          multiline
-          rows={4}
-          // defaultValue="Default Value"
-          fullWidth
-        // placeholder="Write any notes here."
-        />
-        <br />
-        <br />
-
-        <Divider>
-          Choose A Song
-        </Divider>
-
-        <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
-        <div>{`inputValue: '${inputValue}'`}</div>
+          <TextField
+            id="outlined-multiline-static"
+            label="Write any notes here."
+            multiline
+            rows={4}
+            // defaultValue="Default Value"
+            fullWidth
+          // placeholder="Write any notes here."
+          />
+          <br />
+          <br /></div>)}
 
 
 
-        <div className="row">
-          <div className="column">
-            <Box sx={{ minWidth: 120 }}>
-              {/* BOOKMARK */}
-              {/* Searchable pre-filled dropdown list of song compositions that can be used to fill in the Manual Entry widget https://mui.com/material-ui/react-autocomplete/ */}
-              <Autocomplete
-                disablePortal
+        {isSongChooserShowing && (<div>
+          <Divider>
+            Choose A Song
+          </Divider>
 
-                // options={SongChoices}
-                options={baz}
+          <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
+          <div>{`inputValue: '${inputValue}'`}</div>
 
-                sx={{ width: 500 }}
-                renderInput={(params) => <TextField {...params} label="Choose A Song" />}
+          <div className="row">
+            <div className="column">
+              <Box sx={{ minWidth: 120 }}>
+                {/* BOOKMARK */}
+                {/* Searchable pre-filled dropdown list of song compositions that can be used to fill in the Manual Entry widget https://mui.com/material-ui/react-autocomplete/ */}
+                <Autocomplete
+                  disablePortal
 
-                value={value}
-                onChange={(event: any, newValue: string | null, details: any) => {
-                  setValue(newValue);
-                  setMediaUrl(SongChoices[event.target.value].url);
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
-                }}
-              />
-            </Box>
+                  // options={SongChoices}
+                  options={baz}
+
+                  sx={{ width: 500 }}
+                  renderInput={(params) => <TextField {...params} label="Choose A Song" />}
+
+                  value={value}
+                  onChange={(event: any, newValue: string | null, details: any) => {
+                    setValue(newValue);
+                    setMediaUrl(SongChoices[event.target.value].url);
+                  }}
+                  inputValue={inputValue}
+                  onInputChange={(event, newInputValue) => {
+                    setInputValue(newInputValue);
+                  }}
+                />
+              </Box>
+            </div>
+            <div className="column">
+              <Box sx={{ minWidth: 120 }}>
+                Preview
+                <br />
+
+                {mediaUrl && <iframe width="420" height="315"
+                  src={mediaUrl}>
+                </iframe>}
+
+                <br />
+                Download/Buy Link
+              </Box>
+            </div>
           </div>
-          <div className="column">
-            <Box sx={{ minWidth: 120 }}>
-              Preview
-              <br />
 
-              {mediaUrl && <iframe width="420" height="315"
-                src={mediaUrl}>
-              </iframe>}
+          <br />
 
-              <br />
-              Download/Buy Link
-            </Box>
-          </div>
-        </div>
-
-
-
-
-
-        <br />
+        </div>)}
 
       </Box>
-
 
 
 
